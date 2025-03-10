@@ -1,0 +1,330 @@
+/* Importar fuentes */
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
+/* Estilo general del header */
+.header {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    padding: 1rem 2rem;
+    box-shadow: 0px 4px 6px var(--shadow-color);
+}
+
+/* Estilo del nav */
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: 'Lobster', cursive;
+    font-size: 1.6rem !important;
+    color: var(--text-color);
+}
+
+/* Estilo del menú */
+.menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.menu li {
+    position: relative;
+}
+
+.menu li a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 1rem;
+    font-weight: bold;
+    transition: color 0.3s ease;
+    white-space: nowrap;
+}
+
+.menu li a:hover {
+    color: var(--primary-color);
+}
+
+.menu li h1 {
+    font-size: 1.5rem;
+    margin: 0;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+/* Estilo del select */
+#genre {
+    padding: 0.5rem;
+    border: none;
+    border-radius: 4px;
+    background-color: var(--tertiary-color);
+    color: var(--text-color);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#genre:hover {
+    background-color: var(--hover-color);
+}
+
+label[for="genre"] {
+    margin-right: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--text-color);
+}
+
+/* Estilo del buscador */
+.search-container {
+    margin-left: auto;
+    position: relative;
+    width: 100%;
+    max-width: 300px;
+}
+
+.search-form {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.search-form input {
+    padding: 0.5rem 1rem;
+    margin-inline-start: 1rem;
+    border: none;
+    border-radius: 20px;
+    background-color: var(--tertiary-color);
+    color: var(--text-color);
+    font-size: 0.9rem;
+    width: 100%;
+    transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.search-form input:focus {
+    outline: none;
+    background-color: var(--hover-color);
+    border: 2px solid var(--primary-color);
+}
+
+.search-form input::placeholder {
+    color: #aaa;
+}
+
+.search-form button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-left: -35px;
+    padding: 0.5rem;
+    color: var(--text-color);
+    transition: color 0.3s ease;
+}
+
+.search-form button:hover {
+    color: var(--primary-color);
+}
+
+/* Estilo del menú hamburguesa */
+.menu-toggle {
+    display: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: var(--text-color);
+}
+
+/* Media query para pantallas pequeñas */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+        margin-block-start: .7rem;
+    }
+
+    .menu {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background-color: var(--secondary-color);
+        padding: 1rem;
+        z-index: 1000;
+    }
+
+    .menu.active {
+        display: flex;
+    }
+
+    .search-container {
+        margin-left: 1rem;
+        max-width: calc(100% - 2rem);
+    }
+
+    .search-form input {
+        width: 100%;
+    }
+}
+
+/* Media query para pantallas medianas (769px - 950px) */
+@media (min-width: 769px) and (max-width: 950px) {
+    .menu {
+        gap: 1rem;
+    }
+
+    .menu li h1 {
+        font-size: 1.2rem;
+    }
+
+    .menu li a {
+        font-size: 0.9rem;
+        white-space: nowrap;
+    }
+
+    .search-form input {
+        width: 150px;
+    }
+
+    .search-form input:focus {
+        width: 200px;
+    }
+}
+
+/* Estilos para los resultados de búsqueda */
+.search-results {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--tertiary-color);
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px var(--shadow-color);
+    z-index: 2000;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    min-width: 300px;
+    max-width: 400px;
+}
+
+.search-result-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0.75rem;
+    transition: background-color 0.3s ease;
+    border-bottom: 1px solid var(--hover-color);
+}
+
+.search-result-item:last-child {
+    border-bottom: none;
+}
+
+.search-result-item:hover {
+    background-color: var(--hover-color);
+}
+
+.search-result-link {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-decoration: none;
+    color: var(--text-color);
+    width: 100%;
+}
+
+.search-result-image {
+    width: 50px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+}
+
+.search-result-title {
+    font-size: 1rem;
+    margin: 0;
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: clip;
+    line-height: 1.2;
+    max-height: 2.4em;
+}
+
+.search-result-type-year {
+    font-size: 0.8rem;
+    color: var(--primary-color);
+    margin-top: 0.25rem;
+}
+
+.search-result-hover {
+    display: none;
+    font-size: 0.8rem;
+    color: #ccc;
+    margin-top: 0.5rem;
+}
+
+.search-result-item:hover .search-result-hover {
+    display: block;
+}
+
+/* Mensajes de carga y error */
+.search-error {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem;
+    font-size: 0.9rem;
+    color: var(--text-color);
+    text-align: center;
+    background-color: var(--tertiary-color);
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px var(--shadow-color);
+    z-index: 2000;
+    min-height: 80px;
+}
+
+.search-error.loading-message {
+    color: var(--primary-color);
+}
+
+.search-error.error-message {
+    color: var(--error-color);
+}
+
+.search-error-icon {
+    margin-top: 0.5rem;
+    font-size: 1.5rem;
+}
+
+.search-error-icon.warning {
+    color: var(--error-color);
+}
+
+.search-error-icon.loading {
+    color: var(--primary-color);
+}
+
+.spinner-icon {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.validation-error {
+    color: var(--error-color);
+    font-size: 0.9rem;
+    margin-top: 0.2rem;
+}

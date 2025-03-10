@@ -219,6 +219,12 @@ label[for="genre"] {
     border-bottom: 1px solid var(--hover-color);
 }
 
+.search-result-type {
+    color: var(--primary-color);
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
 .search-result-item:last-child {
     border-bottom: none;
 }

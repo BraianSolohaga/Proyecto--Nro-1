@@ -1,3 +1,4 @@
+/* Estilo principal del componente */
 .anime-recomendado {
     padding: 20px;
     max-width: 1200px;
@@ -112,19 +113,22 @@
 
 .info-text {
     margin: 5px 0;
-    font-size: 14px;
+    font-size: 1rem;
     color: #ccc;
     line-height: 1.4;
 }
 
-/* Botón de "Cargar más" */
-.load-more-container {
+/* Botones de "Cargar más" y "Cargar menos" */
+.load-buttons-container {
     display: flex;
     justify-content: center;
+    gap: 1rem;
+    /* Espacio entre los botones */
     margin-top: 2rem;
 }
 
-.load-more-button {
+.load-more-button,
+.load-less-button {
     background-color: #00bcd4;
     color: #fff;
     font-weight: bold;
@@ -136,11 +140,22 @@
     transition: background-color 0.3s ease;
 }
 
-.load-more-button:hover {
+.load-more-button:hover,
+.load-less-button:hover {
     background-color: #0097a7;
 }
 
-.load-more-button:disabled {
+.load-less-button {
+    background-color: #ff5722;
+    /* Color diferente para "Cargar menos" */
+}
+
+.load-less-button:hover {
+    background-color: #e64a19;
+    /* Color hover para "Cargar menos" */
+}
+
+.load-less-button:disabled {
     background-color: #555;
     cursor: not-allowed;
 }
@@ -162,7 +177,7 @@
     }
 
     .info-text {
-        font-size: 13px;
+        font-size: 1rem;
     }
 }
 
@@ -198,7 +213,7 @@
     }
 
     .info-text {
-        font-size: 12px;
+        font-size: 1rem;
     }
 }
 
@@ -229,51 +244,13 @@
     }
 
     .info-text {
-        font-size: 11px;
+        font-size: 1rem;
         text-align: center;
     }
 
-    .load-more-button {
+    .load-more-button,
+    .load-less-button {
         padding: 0.3rem 0.8rem;
         font-size: 0.9rem;
     }
-}
-
-.load-buttons-container {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin-top: 2rem;
-}
-
-.load-more-button,
-.load-less-button {
-    background-color: #00bcd4;
-    color: #fff;
-    font-weight: bold;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: background-color 0.3s ease;
-}
-
-.load-more-button:hover,
-.load-less-button:hover {
-    background-color: #0097a7;
-}
-
-.load-less-button {
-    background-color: #ff5722;
-
-}
-
-.load-less-button:hover {
-    background-color: #e64a19;
-}
-
-.load-less-button:disabled {
-    background-color: #555;
-    cursor: not-allowed;
 }

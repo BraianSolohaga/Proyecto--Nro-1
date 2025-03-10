@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import './AnimeRecomendado.css'; 
+import './AnimeRecomendado.css';
 
 export function AnimeRecomendado() {
     const [recomendaciones, setRecomendaciones] = useState([]); // Lista de recomendaciones cargadas
@@ -75,7 +75,7 @@ export function AnimeRecomendado() {
         fetchRecomendaciones(currentPage); // Carga la primera página
 
         // Verifica nuevas recomendaciones cada 60 segundos
-        const intervalId = setInterval(checkForNewRecommendations, 60); // 60 segundos
+        const intervalId = setInterval(checkForNewRecommendations, 60000); // 60 segundos
 
         // Limpia el intervalo al desmontar el componente
         return () => clearInterval(intervalId);
@@ -92,7 +92,7 @@ export function AnimeRecomendado() {
 
     // Función para cargar menos recomendaciones
     const loadLess = () => {
-        if (visibleRecomendaciones.length > 0) {
+        if (visibleRecomendaciones.length > RECOMMENDATIONS_PER_PAGE) {
             // Elimina las últimas 10 recomendaciones visibles
             setVisibleRecomendaciones((prevVisible) =>
                 prevVisible.slice(0, prevVisible.length - RECOMMENDATIONS_PER_PAGE)

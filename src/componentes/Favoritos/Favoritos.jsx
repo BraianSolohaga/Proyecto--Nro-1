@@ -73,8 +73,8 @@ export function Favoritos() {
                             />
                             <div className="favorito-info">
                                 <h3 className="favorito-title">{anime.title}</h3>
-                                <p><strong>Tipo:</strong> {anime.type}</p>
-                                <p><strong>Puntuación:</strong> {anime.score}</p>
+                                <p><strong className='favorito-type'>Tipo:</strong><span className='favorito-type-span'>{anime.type}</span></p>
+                                <p><strong className='favorito-score'>Puntuación:</strong><span className='favorito-score-span'>{anime.score}</span></p>
                             </div>
                         </Link>
                     </li>

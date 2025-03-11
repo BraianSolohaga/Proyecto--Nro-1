@@ -85,7 +85,6 @@ export function Header() {
                     <li><Link to="/">Animes</Link></li>
                     <li><Link to="/anime-temporada">Anime de temporada</Link></li>
                     <li><Link to="/recomendaciones">Recomendados</Link></li>
-                    {/* Nueva sección de Favoritos */}
                     <li>
                         <Link to="/favoritos" className="favorites-link">
                             <FaStar size={20} color="#FFD700" /> Favoritos

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams, Link } from "react-router-dom";
+import { FaStar } from "react-icons/fa"; // Ícono de estrella
 import "./AnimeDetalle.css";
 
 export function AnimeDetalle() {
@@ -8,11 +9,19 @@ export function AnimeDetalle() {
     const [anime, setAnime] = useState(null);
     const [relations, setRelations] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [isFavorite, setIsFavorite] = useState(false); // Estado para verificar si el anime es favorito
+    const [showToast, setShowToast] = useState(false); // Estado para mostrar el mensaje de confirmación
+
+    // Carga los IDs de favoritos desde localStorage
+    useEffect(() => {
+        const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+        setIsFavorite(favorites.includes(id));
+    }, [id]);
 
     useEffect(() => {
         const fetchAnimeDetails = async () => {
             try {
-                // Obtiene el detalles del anime
+                // Obtiene los detalles del anime
                 const animeResponse = await axios.get(`https://api.jikan.moe/v4/anime/${id}/full`);
                 setAnime(animeResponse.data.data);
 
@@ -37,6 +46,26 @@ export function AnimeDetalle() {
         return <div>No se encontraron detalles del anime.</div>;
     }
 
+    // Función para manejar el clic en el botón de favoritos
+    const toggleFavorite = () => {
+        const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+        if (isFavorite) {
+            // Elimina de favoritos
+            const updatedFavorites = favorites.filter((favId) => favId !== id);
+            localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+            setIsFavorite(false);
+            setShowToast(true); // Muestra el mensaje de confirmación
+            setTimeout(() => setShowToast(false), 2000); // Oculta el mensaje después de 2 segundos
+        } else {
+            // Agrega a favoritos
+            const updatedFavorites = [...favorites, id];
+            localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+            setIsFavorite(true);
+            setShowToast(true); // Muestra el mensaje de confirmación
+            setTimeout(() => setShowToast(false), 2000); // Oculta el mensaje después de 2 segundos
+        }
+    };
+
     // Filtra las relaciones por tipo
     const adaptations = relations.filter(relation => relation.relation === "Adaptation");
     const sideStories = relations.filter(relation => relation.relation === "Side Story");
@@ -46,6 +75,25 @@ export function AnimeDetalle() {
         <div className="anime-details">
             {/* Título */}
             <h1 className="anime-title">{anime.title}</h1>
+
+            {/* Botón de Favoritos */}
+            <div className="favorite-button-container">
+                <button
+                    className={`favorite-button ${isFavorite ? "favorited" : ""}`}
+                    onClick={toggleFavorite}
+                    title={isFavorite ? "Quitar de favoritos" : "Agregar a favoritos"}
+                >
+                    <FaStar size={20} />
+                    {isFavorite ? "Favorito" : "Guardar en Favoritos"}
+                </button>
+            </div>
+
+            {/* Mensaje de Confirmación (Toast) */}
+            {showToast && (
+                <div className="toast-message">
+                    {isFavorite ? "¡Añadido a favoritos!" : "Eliminado de favoritos."}
+                </div>
+            )}
 
             {/* Puntuación, Puesto y Popularidad */}
             <div className="anime-stats-horizontal">
@@ -86,6 +134,7 @@ export function AnimeDetalle() {
                     <p><strong>Fondo:</strong> {anime.background || "No disponible"}</p>
                 </div>
             </div>
+
             {/* Sección de Secuelas */}
             {sequels.length > 0 && (
                 <div className="relation-section">

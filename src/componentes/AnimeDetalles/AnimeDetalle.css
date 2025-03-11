@@ -197,3 +197,78 @@
         white-space: nowrap;
     }
 }
+
+/* Estilo para el botón de favoritos */
+.favorite-button-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.favorite-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: none;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.3s ease;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    background-color: #2a2a2a;
+}
+
+.favorite-button:hover {
+    color: #FFD700;
+    transform: scale(1.05);
+}
+
+.favorite-button svg {
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.favorite-button:hover svg {
+    transform: scale(1.2);
+    color: #FFD700;
+}
+
+.favorite-button.favorited {
+    background-color: #FFD700;
+    color: #000;
+}
+
+.favorite-button.favorited svg {
+    color: #000;
+}
+
+/* Estilo del mensaje de confirmación (Toast) */
+.toast-message {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #2a2a2a;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    font-size: 1rem;
+    font-weight: 500;
+    animation: fadeInOut 2s ease-in-out;
+}
+
+@keyframes fadeInOut {
+
+    0%,
+    100% {
+        opacity: 0;
+    }
+
+    10%,
+    90% {
+        opacity: 1;
+    }
+}

@@ -340,7 +340,6 @@ label[for="genre"] {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    /* Espacio entre el ícono y el texto */
     color: #fff;
     font-size: 1rem;
     font-weight: 500;
@@ -350,7 +349,6 @@ label[for="genre"] {
 
 .favorites-link:hover {
     color: #FFD700;
-    /* Cambio de color al pasar el cursor */
 }
 
 .favorites-link svg {
@@ -359,5 +357,4 @@ label[for="genre"] {
 
 .favorites-link:hover svg {
     transform: scale(1.2);
-    /* Efecto de escala al pasar el cursor */
 }

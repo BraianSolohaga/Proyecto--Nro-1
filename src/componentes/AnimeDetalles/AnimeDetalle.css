@@ -187,3 +187,13 @@
         padding: 0.3rem;
     }
 }
+
+@media (max-width: 531px) {
+    .anime-stats-horizontal p {
+        margin: 0;
+        font-size: .9rem;
+        font-weight: 700;
+        color: #fdf826;
+        white-space: nowrap;
+    }
+}

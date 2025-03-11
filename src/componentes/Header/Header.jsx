@@ -4,6 +4,7 @@ import { BiSearch } from "react-icons/bi";
 import { FaBars } from "react-icons/fa";
 import { FaSpinner } from "react-icons/fa"; // Ícono de carga
 import { AiOutlineWarning } from "react-icons/ai"; // Ícono de advertencia
+import { FaStar } from "react-icons/fa"; // Ícono de estrella
 import { Link } from "react-router-dom";
 import { useForm } from 'react-hook-form';
 import "./Header.css";
@@ -84,6 +85,12 @@ export function Header() {
                     <li><Link to="/">Animes</Link></li>
                     <li><Link to="/anime-temporada">Anime de temporada</Link></li>
                     <li><Link to="/recomendaciones">Recomendados</Link></li>
+                    {/* Nueva sección de Favoritos */}
+                    <li>
+                        <Link to="/favoritos" className="favorites-link">
+                            <FaStar size={20} color="#FFD700" /> Favoritos
+                        </Link>
+                    </li>
                 </ul>
 
                 {/* Buscador */}

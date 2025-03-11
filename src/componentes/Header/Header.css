@@ -334,3 +334,30 @@ label[for="genre"] {
     font-size: 0.9rem;
     margin-top: 0.2rem;
 }
+
+/* Estilo para el enlace de favoritos */
+.favorites-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    /* Espacio entre el ícono y el texto */
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.favorites-link:hover {
+    color: #FFD700;
+    /* Cambio de color al pasar el cursor */
+}
+
+.favorites-link svg {
+    transition: transform 0.3s ease;
+}
+
+.favorites-link:hover svg {
+    transform: scale(1.2);
+    /* Efecto de escala al pasar el cursor */
+}

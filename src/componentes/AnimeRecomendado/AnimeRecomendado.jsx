@@ -74,8 +74,8 @@ export function AnimeRecomendado() {
     useEffect(() => {
         fetchRecomendaciones(currentPage); // Carga la primera página
 
-        // Verifica nuevas recomendaciones cada 10 segundos
-        const intervalId = setInterval(checkForNewRecommendations, 10); // 10 segundos
+        // Verifica nuevas recomendaciones cada 60 segundos
+        const intervalId = setInterval(checkForNewRecommendations, 60000); // 60 segundos
 
         // Limpia el intervalo al desmontar el componente
         return () => clearInterval(intervalId);

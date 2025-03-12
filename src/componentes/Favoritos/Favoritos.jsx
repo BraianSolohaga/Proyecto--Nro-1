@@ -4,18 +4,16 @@ import { Link } from 'react-router-dom';
 import "./Favoritos.css";
 
 export function Favoritos() {
-    const [animeDetails, setAnimeDetails] = useState([]); // Detalles completos de los animes favoritos
+    const [animeDetails, setAnimeDetails] = useState([]);
     const [loading, setLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
-    const ANIMES_PER_PAGE = 10; // Número de animes por página
+    const ANIMES_PER_PAGE = 10;
 
-    // Carga los IDs de favoritos desde localStorage al iniciar el componente
     useEffect(() => {
         const loadFavorites = async () => {
             try {
                 const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
                 if (storedFavorites.length > 0) {
-                    // Ordena los IDs de favoritos de forma inversa (los más recientes primero)
                     const reversedFavorites = [...storedFavorites].reverse();
                     const requests = reversedFavorites.map((id) =>
                         axios.get(`https://api.jikan.moe/v4/anime/${id}/full`)
@@ -34,12 +32,10 @@ export function Favoritos() {
         loadFavorites();
     }, []);
 
-    // Calcula los animes a mostrar en la página actual
     const indexOfLastAnime = currentPage * ANIMES_PER_PAGE;
     const indexOfFirstAnime = indexOfLastAnime - ANIMES_PER_PAGE;
     const currentAnimes = animeDetails.slice(indexOfFirstAnime, indexOfLastAnime);
 
-    // Cambia de página
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
     if (loading) {
@@ -49,10 +45,17 @@ export function Favoritos() {
     if (animeDetails.length === 0) {
         return (
             <div className="no-favorites-container">
-                <h2 className="no-favorites-title">¡Aún no tienes animes favoritos!</h2>
-                <p className="no-favorites-message">
-                    Agrega tus animes favoritos desde la página.
-                </p>
+                <div className="no-favorites-content">
+                    <h2 className="no-favorites-title">¡Aún no tienes animes favoritos!</h2>
+                    <p className="no-favorites-message">
+                        Agrega tus animes favoritos desde la página.
+                    </p>
+                    <img
+                        src="/Img/Favoritos.avif"
+                        alt="No hay favoritos"
+                        className="no-favorites-image"
+                    />
+                </div>
             </div>
         );
     }
@@ -60,8 +63,6 @@ export function Favoritos() {
     return (
         <div className="favoritos-container">
             <h1 className="favoritos-title">Mis Favoritos</h1>
-
-            {/* Lista de Animes Favoritos */}
             <ul className="favoritos-list">
                 {currentAnimes.map((anime) => (
                     <li key={anime.mal_id} className="favorito-item">
@@ -80,8 +81,6 @@ export function Favoritos() {
                     </li>
                 ))}
             </ul>
-
-            {/* Paginación */}
             <div className="pagination">
                 <button
                     onClick={() => paginate(currentPage - 1)}

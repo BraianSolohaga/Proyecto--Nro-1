@@ -1,12 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+// Header.js
+import React, { useState, useEffect, useContext } from "react";
+import axios from "axios";
 import { BiSearch } from "react-icons/bi";
 import { FaBars } from "react-icons/fa";
 import { FaSpinner } from "react-icons/fa"; // Ícono de carga
 import { AiOutlineWarning } from "react-icons/ai"; // Ícono de advertencia
 import { FaStar } from "react-icons/fa"; // Ícono de estrella
+import { BsSun, BsMoon } from "react-icons/bs"; // Íconos de modo claro/oscuro
 import { Link } from "react-router-dom";
-import { useForm } from 'react-hook-form';
+import { useForm } from "react-hook-form";
+import { ThemeContext } from "../ThemeContext/ThemeContext"; // Importa el contexto del tema
 import "./Header.css";
 
 export function Header() {
@@ -15,6 +18,8 @@ export function Header() {
     const [loading, setLoading] = useState(false); // Estado para el indicador de carga
     const [error, setError] = useState(null); // Estado para mensajes de error
     const [isFocused, setIsFocused] = useState(false); // Estado para controlar el foco del input
+
+    const { theme, toggleTheme } = useContext(ThemeContext);
 
     // Configuración de React Hook Form
     const {
@@ -81,10 +86,20 @@ export function Header() {
 
                 {/* Menú de navegación */}
                 <ul className={`menu ${isMenuOpen ? "active" : ""}`}>
-                    <li><Link to="/"><h1 className='logo'>AnimeList</h1></Link></li>
-                    <li><Link to="/">Animes</Link></li>
-                    <li><Link to="/anime-temporada">Anime de temporada</Link></li>
-                    <li><Link to="/recomendaciones">Recomendados</Link></li>
+                    <li>
+                        <Link to="/">
+                            <h1 className="logo">AnimeList</h1>
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to="/">Animes</Link>
+                    </li>
+                    <li>
+                        <Link to="/anime-temporada">Anime de temporada</Link>
+                    </li>
+                    <li>
+                        <Link to="/recomendaciones">Recomendados</Link>
+                    </li>
                     <li>
                         <Link to="/favoritos" className="favorites-link">
                             <FaStar size={20} color="#FFD700" /> Favoritos
@@ -92,80 +107,94 @@ export function Header() {
                     </li>
                 </ul>
 
-                {/* Buscador */}
-                <div className="search-container">
-                    <form className="search-form">
-                        <input
-                            type="text"
-                            placeholder="Buscar anime..."
-                            {...register("searchQuery", {
-                                minLength: {
-                                    value: 3,
-                                    message: "El término de búsqueda debe tener al menos 3 caracteres.",
-                                },
-                            })}
-                            onFocus={() => setIsFocused(true)} // Activa el desplegable al enfocar
-                            onBlur={() => setTimeout(() => setIsFocused(false), 200)} // Oculta el desplegable al perder el foco
-                        />
-                        <button type="submit">
-                            <BiSearch size={20} color="#fff" />
-                        </button>
-                    </form>
+                {/* Contenedor principal para el buscador y el botón de tema */}
+                <div className="search-and-theme-container">
+                    {/* Buscador */}
+                    <div className="search-container">
+                        <form className="search-form">
+                            <input
+                                type="text"
+                                placeholder="Buscar anime..."
+                                {...register("searchQuery", {
+                                    minLength: {
+                                        value: 3,
+                                        message: "El término de búsqueda debe tener al menos 3 caracteres.",
+                                    },
+                                })}
+                                onFocus={() => setIsFocused(true)} 
+                                onBlur={() => setTimeout(() => setIsFocused(false), 200)} // 
+                            />
+                            <button type="submit">
+                                <BiSearch size={20} color="#fff" />
+                            </button>
+                        </form>
 
-                    {/* Mensaje de validación */}
-                    {errors.searchQuery && (
-                        <p className="validation-error">{errors.searchQuery.message}</p>
-                    )}
+                        {/* Mensaje de validación */}
+                        {errors.searchQuery && (
+                            <p className="validation-error">{errors.searchQuery.message}</p>
+                        )}
 
-                    {/* Indicador de carga */}
-                    {loading && isFocused && (
-                        <div className="search-results">
-                            <div className="search-error loading-message">
-                                <span className="search-error-icon loading">
-                                    <FaSpinner size={20} color="#00bcd4" className="spinner-icon" />
-                                </span>
-                                <span>Cargando resultados...</span>
+                        {/* Indicador de carga */}
+                        {loading && isFocused && (
+                            <div className="search-results">
+                                <div className="search-error loading-message">
+                                    <span className="search-error-icon loading">
+                                        <FaSpinner size={20} color="#00bcd4" className="spinner-icon" />
+                                    </span>
+                                    <span>Cargando resultados...</span>
+                                </div>
                             </div>
-                        </div>
-                    )}
+                        )}
 
-                    {/* Mensaje de error */}
-                    {!loading && error && isFocused && (
-                        <div className="search-results">
-                            <div className="search-error error-message">
-                                <span className="search-error-icon warning">
-                                    <AiOutlineWarning size={20} color="#ff5252" />
-                                </span>
-                                <span>{error}</span>
+                        {/* Mensaje de error */}
+                        {!loading && error && isFocused && (
+                            <div className="search-results">
+                                <div className="search-error error-message">
+                                    <span className="search-error-icon warning">
+                                        <AiOutlineWarning size={20} color="#ff5252" />
+                                    </span>
+                                    <span>{error}</span>
+                                </div>
                             </div>
-                        </div>
-                    )}
+                        )}
 
-                    {/* Resultados de búsqueda */}
-                    {!loading && !error && searchResults.length > 0 && isFocused && (
-                        <ul className="search-results">
-                            {searchResults.map((anime) => (
-                                <li key={anime.mal_id} className="search-result-item">
-                                    <Link to={`/anime/${anime.mal_id}`} className="search-result-link">
-                                        <img
-                                            src={anime.images.jpg.small_image_url}
-                                            alt={anime.title}
-                                            className="search-result-image"
-                                        />
-                                        <div className="search-result-info">
-                                            <h5 className="search-result-title">{anime.title}</h5>
-                                            <p className="search-result-type">{anime.type}</p>
-                                        </div>
-                                        <div className="search-result-hover">
-                                            <p><strong>Emisión:</strong> {anime.aired?.string || "N/A"}</p>
-                                            <p><strong>Puntuación:</strong> {anime.score || "N/A"}</p>
-                                            <p><strong>Estado:</strong> {anime.status || "N/A"}</p>
-                                        </div>
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
-                    )}
+                        {/* Resultados de búsqueda */}
+                        {!loading && !error && searchResults.length > 0 && isFocused && (
+                            <ul className="search-results">
+                                {searchResults.map((anime) => (
+                                    <li key={anime.mal_id} className="search-result-item">
+                                        <Link to={`/anime/${anime.mal_id}`} className="search-result-link">
+                                            <img
+                                                src={anime.images.jpg.small_image_url}
+                                                alt={anime.title}
+                                                className="search-result-image"
+                                            />
+                                            <div className="search-result-info">
+                                                <h5 className="search-result-title">{anime.title}</h5>
+                                                <p className="search-result-type">{anime.type}</p>
+                                            </div>
+                                            <div className="search-result-hover">
+                                                <p>
+                                                    <strong>Emisión:</strong> {anime.aired?.string || "N/A"}
+                                                </p>
+                                                <p>
+                                                    <strong>Puntuación:</strong> {anime.score || "N/A"}
+                                                </p>
+                                                <p>
+                                                    <strong>Estado:</strong> {anime.status || "N/A"}
+                                                </p>
+                                            </div>
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
+                    </div>
+
+                    {/* Botón de cambio de tema */}
+                    <button onClick={toggleTheme} className="theme-toggle">
+                        {theme === "light" ? <BsMoon size={24} /> : <BsSun size={24} />}
+                    </button>
                 </div>
             </nav>
         </header>

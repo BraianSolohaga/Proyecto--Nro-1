@@ -85,6 +85,11 @@
     color: #00C4DE;
 }
 
+.favoritos-container {
+    min-height: 100vh;
+    margin-block-end: 1rem;
+}
+
 /* Estilo para el mensaje de "No hay animes favoritos" */
 .no-favorites-container {
     text-align: center;
@@ -94,7 +99,8 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     color: #fff;
     max-width: 600px;
-    margin: 50px auto;
+    margin: 1rem auto;
+    min-height: 100vh;
 }
 
 .no-favorites-title {
@@ -107,6 +113,31 @@
 .no-favorites-message {
     font-size: 1.2rem;
     color: #ccc;
+    margin-bottom: 20px;
+}
+
+/* Estilo para la imagen y el mensaje de "No hay animes favoritos" */
+.no-favorites-content {
+    display: inline-block;    text-align: center;
+    border: 2px solid #00bcd4;
+    border-radius: 12px;
+    padding: 20px;
+    background: #2A2A2A;
+    max-width: 100%;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.no-favorites-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-top: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.no-favorites-image:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
 }
 
 /* Estilo de paginación */

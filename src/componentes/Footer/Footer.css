@@ -1,0 +1,45 @@
+/* Estilo general del footer */
+.footer {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px -4px 6px var(--shadow-color);
+}
+
+/* Estilo de derechos de autor */
+.footer-copyright {
+    font-size: 0.9rem;
+    color: var(--text-color);
+}
+
+/* Estilo  de redes sociales */
+.footer-social {
+    display: flex;
+    gap: 1rem;
+}
+
+.footer-social a {
+    text-decoration: none;
+    color: var(--text-color);
+    transition: color 0.3s ease;
+}
+
+.footer-social a:hover {
+    color: var(--primary-color);
+}
+
+/* Media query para pantallas pequeñas */
+@media (max-width: 768px) {
+    .footer {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+
+    .footer-social {
+        justify-content: center;
+    }
+}

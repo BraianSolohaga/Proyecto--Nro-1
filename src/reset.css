@@ -1,10 +1,10 @@
 :root {
-  --bg-color-dark: #485563;
+  --bg-color-dark: #2B353F;
   --gradient-start-dark: #29323c;
   --gradient-end-dark: #485563;
   --text-color-dark: #fff;
 
-  --bg-color-light: #f5f5f5;
+  --bg-color-light: #ffefbae3;
   --gradient-start-light: #ffffff;
   --gradient-end-light: #e0e0e0;
   --text-color-light: #333;
@@ -32,16 +32,19 @@
 
 /* Modo oscuro (por defecto) */
 body {
-  background: linear-gradient(to bottom, var(--gradient-start-dark), var(--gradient-end-dark));
+  background: var(--bg-color-dark);
   color: var(--text-color-dark);
   transition: background-color 0.3s ease, color 0.3s ease;
   line-height: 1.6;
   font-size: 16px;
 }
 
-/* Modo claro */
-[data-theme="light"] body {
-  background: linear-gradient(to bottom, var(--gradient-start-light), var(--gradient-end-light));
-  color: var(--text-color-light);
+
+.light {
+  background-color: var(--bg-color-light);
+  color: var(--text-color-dark);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  line-height: 1.6;
+  font-size: 16px;
 }
 

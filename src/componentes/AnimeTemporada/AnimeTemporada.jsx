@@ -87,7 +87,7 @@ export function AnimeTemporada() {
         return title;
     }
 
-    // Manejador del formulario de filtrado con React Hook Form
+    // Manejador del formulario de filtrado
     const handleFilterSubmit = (data) => {
         const { year, season } = data;
 
@@ -117,19 +117,19 @@ export function AnimeTemporada() {
     // Botón para volver a la temporada actual
     const handleBackToCurrentSeason = () => {
         setViewMode('current'); // Volver al modo de temporada actual
-        setCurrentPage(1); // Reinicia la página a 1
-        setError(null); // Limpia los errores
+        setCurrentPage(1); 
+        setError(null); 
     };
 
     // Botón para ver la próxima temporada
     const handleUpcomingSeason = () => {
         setViewMode('upcoming'); // Cambia al modo de próxima temporada
-        setCurrentPage(1); // Reinicia la página a 1
-        setError(null); // Limpia los errores
+        setCurrentPage(1); 
+        setError(null); 
     };
 
     return (
-        <div className="anime-container">
+        <main className="anime-container">
             {/* Formulario de filtrado */}
             <div className="filter-container">
                 <form onSubmit={handleSubmit(handleFilterSubmit)} className="filter-form">
@@ -263,6 +263,6 @@ export function AnimeTemporada() {
                     </div>
                 </>
             )}
-        </div>
+        </main>
     );
 }

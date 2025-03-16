@@ -4,7 +4,6 @@
     margin: 1rem auto;
     padding: 2rem;
     background-color: #1a1a1a;
-    /* Fondo oscuro */
     border-radius: 12px;
 }
 
@@ -236,7 +235,6 @@
 
 .filter-button:active {
     transform: translateY(0);
-    /* Regresa a la posición original al hacer clic */
 }
 
 /* Diseño responsivo */

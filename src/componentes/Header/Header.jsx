@@ -1,4 +1,3 @@
-// Header.js
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { BiSearch } from "react-icons/bi";
@@ -9,7 +8,7 @@ import { FaStar } from "react-icons/fa"; // Ícono de estrella
 import { BsSun, BsMoon } from "react-icons/bs"; // Íconos de modo claro/oscuro
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { ThemeContext } from "../ThemeContext/ThemeContext"; // Importa el contexto del tema
+import { ThemeContext } from "../ThemeContext/ThemeContext"; 
 import "./Header.css";
 
 export function Header() {
@@ -36,8 +35,8 @@ export function Header() {
     useEffect(() => {
         const handleSearch = async () => {
             if (!searchQuery || searchQuery.trim() === "") {
-                setSearchResults([]); // Limpia resultados si el campo está vacío
-                setError(null); // Limpia errores
+                setSearchResults([]); // Limpia los resultados si el campo está vacío
+                setError(null); // Limpia los errores
                 return;
             }
             try {
@@ -51,7 +50,7 @@ export function Header() {
                 });
                 if (response.data && response.data.data && response.data.data.length > 0) {
                     setSearchResults(response.data.data); // Guarda resultados
-                    setError(null); // Limpia errores
+                    setError(null); 
                 } else {
                     setError("No se encontraron resultados para tu búsqueda."); // Mensaje cuando no hay resultados
                     setSearchResults([]); // Limpia resultados
@@ -69,10 +68,10 @@ export function Header() {
             handleSearch();
         } else if (searchQuery && searchQuery.trim().length < 3) {
             setError("El término de búsqueda debe tener al menos 3 caracteres.");
-            setSearchResults([]); // Limpia resultados
+            setSearchResults([]);
         } else {
-            setError(null); // Limpia errores
-            setSearchResults([]); // Limpia resultados
+            setError(null);
+            setSearchResults([]); 
         }
     }, [searchQuery]); // Se ejecuta cada vez que cambia el valor del campo de búsqueda
 

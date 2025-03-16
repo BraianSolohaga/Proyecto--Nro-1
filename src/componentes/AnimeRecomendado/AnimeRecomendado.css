@@ -124,7 +124,6 @@
     display: flex;
     justify-content: center;
     gap: 1rem;
-    /* Espacio entre los botones */
     margin-top: 2rem;
 }
 
@@ -148,12 +147,10 @@
 
 .load-less-button {
     background-color: #ff5722;
-    /* Color diferente para "Cargar menos" */
 }
 
 .load-less-button:hover {
     background-color: #e64a19;
-    /* Color hover para "Cargar menos" */
 }
 
 .load-less-button:disabled {
@@ -193,12 +190,10 @@
 
     .recomendaciones-list {
         grid-template-columns: 1fr;
-        /* Una sola columna */
     }
 
     .recomendacion-card {
         flex-direction: column;
-        /* Apilar elementos verticalmente */
         align-items: flex-start;
         gap: 10px;
         padding: 10px;

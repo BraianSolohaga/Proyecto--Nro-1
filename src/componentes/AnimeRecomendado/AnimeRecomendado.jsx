@@ -74,8 +74,8 @@ export function AnimeRecomendado() {
     useEffect(() => {
         fetchRecomendaciones(currentPage); // Carga la primera página
 
-        // Verifica nuevas recomendaciones cada 60 segundos
-        const intervalId = setInterval(checkForNewRecommendations, 60000); // 60 segundos
+        // Verifica nuevas recomendaciones 
+        const intervalId = setInterval(checkForNewRecommendations, 60000); // 
 
         // Limpia el intervalo al desmontar el componente
         return () => clearInterval(intervalId);
@@ -109,7 +109,7 @@ export function AnimeRecomendado() {
     }
 
     return (
-        <div className="anime-recomendado">
+        <main className="anime-recomendado">
             <h2 className="title">Recomendaciones</h2>
             <ul className="recomendaciones-list">
                 {visibleRecomendaciones.map((recomendacion) => {
@@ -176,6 +176,6 @@ export function AnimeRecomendado() {
                     </button>
                 )}
             </div>
-        </div>
+        </main>
     );
 }

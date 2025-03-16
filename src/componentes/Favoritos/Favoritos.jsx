@@ -44,7 +44,7 @@ export function Favoritos() {
 
     if (animeDetails.length === 0) {
         return (
-            <div className="no-favorites-container">
+            <section className="no-favorites-container">
                 <div className="no-favorites-content">
                     <h2 className="no-favorites-title">¡Aún no tienes animes favoritos!</h2>
                     <p className="no-favorites-message">
@@ -56,12 +56,12 @@ export function Favoritos() {
                         className="no-favorites-image"
                     />
                 </div>
-            </div>
+            </section>
         );
     }
 
     return (
-        <div className="favoritos-container">
+        <main className="favoritos-container">
             <h1 className="favoritos-title">Mis Favoritos</h1>
             <ul className="favoritos-list">
                 {currentAnimes.map((anime) => (
@@ -100,6 +100,6 @@ export function Favoritos() {
                     Siguiente
                 </button>
             </div>
-        </div>
+        </main>
     );
 }

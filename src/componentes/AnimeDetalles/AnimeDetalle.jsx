@@ -50,19 +50,19 @@ export function AnimeDetalle() {
     const toggleFavorite = () => {
         const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
         if (isFavorite) {
-            // Elimina de favoritos
+            // Elimina los animes de favoritos
             const updatedFavorites = favorites.filter((favId) => favId !== id);
             localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
             setIsFavorite(false);
             setShowToast(true); // Muestra el mensaje de confirmación
             setTimeout(() => setShowToast(false), 2000); // Oculta el mensaje después de 2 segundos
         } else {
-            // Agrega a favoritos
+            // Agrega los animes a favoritos
             const updatedFavorites = [...favorites, id];
             localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
             setIsFavorite(true);
-            setShowToast(true); // Muestra el mensaje de confirmación
-            setTimeout(() => setShowToast(false), 2000); // Oculta el mensaje después de 2 segundos
+            setShowToast(true);
+            setTimeout(() => setShowToast(false), 2000);
         }
     };
 
@@ -72,7 +72,7 @@ export function AnimeDetalle() {
     const sequels = relations.filter(relation => relation.relation === "Sequel");
 
     return (
-        <div className="anime-details">
+        <main className="anime-details">
             {/* Título */}
             <h1 className="anime-title">{anime.title}</h1>
 
@@ -137,7 +137,7 @@ export function AnimeDetalle() {
 
             {/* Sección de Secuelas */}
             {sequels.length > 0 && (
-                <div className="relation-section">
+                <section className="relation-section">
                     <h2 className="relation-title">Secuelas</h2>
                     <ul className="relation-list">
                         {sequels.flatMap(relation => relation.entry).map((entry, idx) => (
@@ -156,12 +156,12 @@ export function AnimeDetalle() {
                             </li>
                         ))}
                     </ul>
-                </div>
+                </section>
             )}
 
             {/* Sección de Adaptaciones */}
             {adaptations.length > 0 && (
-                <div className="relation-section">
+                <section className="relation-section">
                     <h2 className="relation-title">Adaptaciones</h2>
                     <ul className="relation-list">
                         {adaptations.flatMap(relation => relation.entry).map((entry, idx) => (
@@ -180,12 +180,12 @@ export function AnimeDetalle() {
                             </li>
                         ))}
                     </ul>
-                </div>
+                </section>
             )}
 
             {/* Sección de Historias Secundarias */}
             {sideStories.length > 0 && (
-                <div className="relation-section">
+                <section className="relation-section">
                     <h2 className="relation-title">Historias Secundarias</h2>
                     <ul className="relation-list">
                         {sideStories.flatMap(relation => relation.entry).map((entry, idx) => (
@@ -204,8 +204,8 @@ export function AnimeDetalle() {
                             </li>
                         ))}
                     </ul>
-                </div>
+                </section>
             )}
-        </div>
+        </main>
     );
 }

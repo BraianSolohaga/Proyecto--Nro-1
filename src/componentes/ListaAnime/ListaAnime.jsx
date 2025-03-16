@@ -78,13 +78,13 @@ export function ListaAnime() {
         }
     };
 
-    // Limpia las generos seleccionados
+    // Limpia los generos seleccionados
     const clearSelection = () => {
         setSelectedGenres([]);
     };
 
     return (
-        <div className="anime-container">
+        <main className="anime-container">
             {/* Filtro de géneros */}
             <div className="filter-container">
                 <div className="genre-filter">
@@ -170,6 +170,6 @@ export function ListaAnime() {
                     Siguiente
                 </button>
             </div>
-        </div>
+        </main>
     );
 }
